@@ -1,0 +1,6 @@
+{
+  "name": "Avaliação Oral de Matemática 2026",
+  "description": "Sistema completo de dashboards, cruzamento interdisciplinar de Fluência Leitora (IFL) e Matemática Oral, e diagnósticos pedagógicos do 2º ano da Rede Municipal de Pindamonhangaba (SP).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
