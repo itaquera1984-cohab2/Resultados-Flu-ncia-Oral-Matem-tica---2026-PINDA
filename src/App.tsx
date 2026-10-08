@@ -16,6 +16,7 @@ import CsvUploader from './components/CsvUploader';
 import ExternalAssessmentView from './components/ExternalAssessmentView';
 import ClassView from './components/ClassView';
 import PedagogicalView from './components/PedagogicalView';
+import StudentResultsView from './components/StudentResultsView';
 import ReportModal from './components/ReportModal';
 import { 
   LayoutDashboard, 
@@ -35,9 +36,10 @@ import {
   Building2,
   FileText,
   Activity
+  ,UserRoundSearch
 } from 'lucide-react';
 
-type TabType = 'rede' | 'participacao_faixas' | 'descritores_escola' | 'itens_escola' | 'setores' | 'escola_drill' | 'turma_drill' | 'pedagogico' | 'avaliacao_externa';
+type TabType = 'rede' | 'resultados_alunos' | 'participacao_faixas' | 'descritores_escola' | 'itens_escola' | 'setores' | 'escola_drill' | 'turma_drill' | 'pedagogico' | 'avaliacao_externa';
 
 export default function App() {
   // 1. Core dataset states pre-seeded with municipal statistics of Pindamonhangaba
@@ -190,6 +192,18 @@ export default function App() {
           >
             <LayoutDashboard size={15} className="mr-3" />
             <span>Visão Executiva (Rede)</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('resultados_alunos')}
+            className={`w-full flex items-center px-6 py-3 text-xs font-bold transition-all text-left ${
+              activeTab === 'resultados_alunos'
+                ? 'bg-blue-600 text-white font-extrabold border-r-4 border-blue-400'
+                : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            <UserRoundSearch size={15} className="mr-3" />
+            <span>Resultados por Aluno</span>
           </button>
 
           <button
@@ -374,6 +388,8 @@ export default function App() {
             {activeTab === 'rede' && (
               <NetworkView networkData={networkData} classes={classes} onGenerateReport={() => triggerReport('executivo')} />
             )}
+
+            {activeTab === 'resultados_alunos' && <StudentResultsView />}
 
             {activeTab === 'participacao_faixas' && (
               <ParticipacaoFaixasView schools={schools} onGenerateReport={() => triggerReport('participacao_faixas')} />
